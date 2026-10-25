@@ -23,7 +23,7 @@ def main():
         },
         {
             "role": "user",
-            "content": "Explique brevemente o que é Machine Learning.",
+            "content": "Me resuma a história do Fluminense.",
         },
     ]
 
@@ -32,7 +32,7 @@ def main():
     print("\nGerando resposta...\n")
 
     with torch.inference_mode():
-        outputs = model.generate(**inputs, max_new_tokens = 150, do_sample = False,pad_token_id = tokenizer.eos_token_id)
+        outputs = model.generate(**inputs, max_new_tokens = 256, do_sample = False,pad_token_id = tokenizer.eos_token_id)
     generated_tokens = outputs[0][inputs["input_ids"].shape[1]:]
 
     response = tokenizer.decode(generated_tokens,skip_special_tokens = True)
