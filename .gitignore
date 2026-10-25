@@ -1,0 +1,43 @@
+
+# Ambiente virtual
+.venv/
+venv/
+env/
+
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Arquivos do macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Variáveis de ambiente e credenciais
+.env
+.env.*
+!.env.example
+
+# Modelos treinados e checkpoints
+output/
+modelo_bbc_classificacao/
+checkpoints/
+*.safetensors
+*.gguf
+pytorch_model.bin
+
+# Cache do Hugging Face
+.cache/
+.cache_huggingface/
+huggingface_cache/
+
+# Logs e monitoramento
+*.log
+wandb/
+runs/
+
+# Notebooks e ferramentas
+.ipynb_checkpoints/
+.pytest_cache/
+.mypy_cache/
