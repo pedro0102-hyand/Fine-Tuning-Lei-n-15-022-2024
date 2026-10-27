@@ -36,18 +36,23 @@ if tokenizer.pad_token is None:
 model.config.pad_token_id = tokenizer.pad_token_id
 
 # Configura o treinamento
+
 training_args = SFTConfig(
 
-    output_dir = str(OUTPUT_DIR),
-    num_train_epochs = NUM_TRAIN_EPOCHS,
-    per_device_train_batch_size = PER_DEVICE_TRAIN_BATCH_SIZE,
-    gradient_accumulation_steps = GRADIENT_ACCUMULATION_STEPS,
-    learning_rate = LEARNING_RATE,
-    max_length = MAX_LENGTH,
-    save_strategy = "epoch",
-    logging_steps = 10,
-    report_to = "none",
-    overwrite_output_dir = True,
+    output_dir=str(OUTPUT_DIR),
+    num_train_epochs=NUM_TRAIN_EPOCHS,
+    per_device_train_batch_size=PER_DEVICE_TRAIN_BATCH_SIZE,
+    gradient_accumulation_steps=GRADIENT_ACCUMULATION_STEPS,
+    learning_rate=LEARNING_RATE,
+    max_length=MAX_LENGTH,
+    save_strategy="epoch",
+    logging_steps=10,
+    logging_first_step=True,
+    report_to="none",
+    overwrite_output_dir=True,
+    use_cpu=False,
+    dataloader_num_workers=0,
+    save_only_model=True,
 
 )
 
