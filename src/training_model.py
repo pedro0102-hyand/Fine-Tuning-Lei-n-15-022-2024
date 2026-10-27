@@ -5,6 +5,8 @@ from datasets import Dataset
 from transformers import AutoModelForCausalLM, AutoTokenizer
 from trl import SFTTrainer, SFTConfig
 from configs import (MODEL_NAME,NUM_TRAIN_EPOCHS,PER_DEVICE_TRAIN_BATCH_SIZE,GRADIENT_ACCUMULATION_STEPS,LEARNING_RATE,MAX_LENGTH,OUTPUT_DIR)
+from lora_config import lora_config
+import sys
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 DATASET_PATH = BASE_DIR / "lei_n_15_022_2024.json"
@@ -50,7 +52,14 @@ training_args = SFTConfig(
 )
 
 # Criando o treinador
-trainer = SFTTrainer(model=model,args=training_args,train_dataset=dataset,processing_class=tokenizer)
+trainer = SFTTrainer(model = model, args = training_args, train_dataset = dataset, processing_class = tokenizer, peft_config = lora_config)
+print("\nVerificação dos parâmetros treináveis:")
+trainer.model.print_trainable_parameters()
+
+if "--check-only" in sys.argv:
+    print("\nVerificação concluída. O treinamento não será iniciado.")
+    sys.exit(0)
+
 print("Treinador configurado com sucesso.")
 print(f"Dispositivo MPS disponível: {torch.backends.mps.is_available()}")
 print("Pronto para iniciar o fine-tuning.")

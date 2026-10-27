@@ -1,6 +1,6 @@
 from pathlib import Path
-BASE_DIR = Path(__file__).resolve().parent.parent
 
+BASE_DIR = Path(__file__).resolve().parent.parent
 MODEL_NAME = "Qwen/Qwen2.5-0.5B-Instruct"
 
 # Parâmetros do fine-tuning
